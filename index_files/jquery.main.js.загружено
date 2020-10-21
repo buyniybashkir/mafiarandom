@@ -1,0 +1,79 @@
+$(document).ready(function() {
+
+	$('.generate').on('click', function() {
+		if($('.results').html()){
+			if(!$('.prev-results').length){
+				$('.generate').after('<span class="row-title prev-row-title">Предыдущие ролы: </span>');
+			}
+			var $prevResults = $('<div class="prev-results"/>').html($('.results').html());
+			$('.prev-rolls').append($prevResults);
+		}
+		
+		$('.results, .active-roles.commissioner, .active-roles.mafia, .active-roles.doctor').html('');
+		var players = parseInt($('#playersCount').val());
+		var res = [],
+			activeRolesRes = [],
+			activeRoles = [],
+			doctor = $('#doctor').is(':checked');
+
+		for(var i = 0; i < players; i++){
+			res[i] = i + 1;
+		}
+
+		res = shuffle(res);
+
+		for(var i = 0; i < res.length; i++){
+			$('.results').append('<span>' + res[i] + '</span>');
+		}
+
+		for(var i = 0; i < (doctor ? 5 : 4); i++){
+			do {
+				var random = Math.floor(Math.random() * players);
+			} while (activeRolesRes.indexOf(random) >= 0);
+			activeRolesRes.push(random);
+			activeRoles.push(res[random]);
+
+			if(!doctor){
+				if(i === 0){
+					$('.results span').eq(random).addClass('commissioner');
+					$('.active-roles.commissioner').append('<span>' + activeRoles[i] + '</span>');
+				} else {
+					$('.results span').eq(random).addClass('mafia');
+					$('.active-roles.mafia').append('<span>' + activeRoles[i] + '</span>');
+				}
+			} else {
+				if(i === 0){
+					$('.results span').eq(random).addClass('commissioner');
+					$('.active-roles.commissioner').append('<span>' + activeRoles[i] + '</span>');
+				} else if(i === 1) {
+					$('.results span').eq(random).addClass('doctor');
+					$('.active-roles.doctor').append('<span>' + activeRoles[i] + '</span>');
+				} else {
+					$('.results span').eq(random).addClass('mafia');
+					$('.active-roles.mafia').append('<span>' + activeRoles[i] + '</span>');
+				}
+			}
+		}
+	});
+
+	$('#playersCount').on('change', function() {
+		$('.generate').click();
+	});
+	$('#doctor').on('change', function() {
+		if(!$(this).is(':checked')){
+			$('.row--doctor').addClass('hidden');
+		} else {
+			$('.row--doctor').removeClass('hidden');
+		}
+
+		$('.generate').click();
+	});
+});
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}

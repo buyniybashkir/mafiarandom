@@ -1,0 +1,164 @@
+body{
+	margin: 0;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+#wrapper{
+	margin: 0 auto;
+	padding: 32px 0;
+	max-width: 540px;
+}
+
+.container{
+	width: 100%;
+}
+
+.controls{
+	margin-bottom: 32px;
+}
+
+.input-row{
+	margin-bottom: 16px;
+}
+
+.input-row label{
+	display: block;
+	margin-bottom: 8px;
+}
+
+.input-row select{
+	width: 100%;
+	height: 32px;
+	padding: 0 8px;
+	display: block;
+	font-size: 14px;
+	line-height: 1.2;
+	box-sizing: border-box;
+}
+
+.results span,
+.prev-results span,
+.active-roles span{
+	width: 24px;
+	margin: 0 8px;
+	text-align: center;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.results,
+.prev-results{
+	height: 24px;
+	font-size: 20px;
+	line-height: 1.2;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	color: red;
+	margin: 0 -8px 16px;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.results{
+	padding-bottom: 16px;
+	border-bottom: 1px solid #ccc;
+}
+
+.prev-results{
+	padding-top: 16px;
+	border-top: 1px solid #ccc;
+}
+
+.mafia{
+	color: black;
+}
+
+.commissioner{
+	color: blue;
+}
+
+.doctor{
+	color: green;
+}
+
+.row{
+	font-size: 20px;
+	line-height: 1.2;
+	margin: 0 0 16px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.row-title{
+	width: 120px;
+	display: block;
+	margin-right: 15px;
+}
+
+.generate{
+	width: 100%;
+	border: none;
+	display: block;
+	font-size: 16px;
+	cursor: pointer;
+	background: #ccc;
+	margin: 0 0 32px;
+	line-height: 20px;
+	padding: 10px 32px;
+	box-sizing: border-box;
+}
+
+.row.hidden{
+	display: none;
+}
+
+.prev-row-title{
+	width: auto;
+	display: block;
+	font-size: 18px;
+	line-height: 1.2;
+	margin-bottom: 24px;
+}
+
+.prev-rolls{
+	counter-reset: counter;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column-reverse;
+	-moz-flex-direction: column-reverse;
+	-ms-flex-direction: column-reverse;
+	-o-flex-direction: column-reverse;
+	flex-direction: column-reverse;
+	-ms-align-items: flex-start;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.prev-results{
+	position: relative;
+	width: calc(100% + 16px);
+	counter-increment: counter;
+}
+
+.prev-results:before{
+	top: 16px;
+	right: 100%;
+	color: #000;
+	margin-right: 16px;
+	position: absolute;
+	content: counter(counter) '. ';
+}
