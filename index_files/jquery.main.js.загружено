@@ -16,8 +16,8 @@ $(document).ready(function() {
 			activeRoles = [],
 			doctor = $('#doctor').is(':checked');
 
-		for(var i = 0; i < players; i++){
-			res[i] = i + 2;
+		for(var i = 0; i < players; i+){
+			res[i] = i + 1;
 		}
 
 		res = shuffle(res);
